@@ -28,7 +28,43 @@ struct node{
 	struct node *next;
 };
 
+int leaps(int date[])
+{
+	if (date[1] <= 2)
+		date[2]--;
+	return((date[2] / 4) - (date[2] / 100) + (date[2] / 400));
+}
 
 int between_days(struct node *date1head, struct node *date2head){
-	return -1;
+	int mon[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	int i, date1[3] = { 0 }, date2[3] = { 0 },v1=0,v2=0,flag=0,days1=0,days2=0;
+	struct node *temp1=date1head, *temp2=date2head;
+	if (date1head==NULL||date2head==NULL)
+		return -1;
+	for (i = 0; i < 8 && temp1; i++)
+	{
+		date1[flag] *= 10;
+		date1[flag] += temp1->data;
+		temp1 = temp1->next;
+		if (i == 1 || i == 3)
+			flag++;
+	}
+	flag = 0;
+	for (i = 0; i < 8 && temp2; i++)
+	{
+		date2[flag] *= 10;
+		date2[flag] += temp2->data;
+		temp2 = temp2->next;
+		if (i == 1 || i == 3)
+			flag++;
+	}
+	days1 += date1[2] * 365 + date1[0];
+	for (i = 0; i < date1[1] - 1; i++)
+		days1 += mon[i];
+	days1 += leaps(date1);
+	days2 += date2[2] * 365 + date2[0];
+	for (i = 0; i < date2[1] - 1; i++)
+		days2 += mon[i];
+	days2 += leaps(date2);
+	return abs(days2 - days1)-1;
 }
