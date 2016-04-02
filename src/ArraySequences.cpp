@@ -48,6 +48,12 @@ int * find_sequences(int *arr, int len){
 		{
 			d = *(arr + j) - *(arr + i);
 		}
+		if (d == -1 && r == -1)
+		{
+			i++;
+			j = i + 1;
+			k = i + 2;
+		}
 		if (d != -1)
 		{
 			a[flag] = i;
@@ -58,9 +64,6 @@ int * find_sequences(int *arr, int len){
 			}
 			a[flag] = i;
 			flag++;
-			i++;
-			j = i + 1;
-			k = i + 2;
 			d = -1;
 		}
 
@@ -73,11 +76,11 @@ int * find_sequences(int *arr, int len){
 
 			}
 			a[5] = i;
-			i++;
-			j = i + 1;
-			k = i + 2;
 			r = -1;
 		}
+		
+		j = i + 1;
+		k = i + 2;
 
 		if (i >= len)
 			break;
