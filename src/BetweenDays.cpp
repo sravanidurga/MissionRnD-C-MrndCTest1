@@ -50,6 +50,7 @@ int between_days(struct node *date1head, struct node *date2head){
 			flag++;
 	}
 	flag = 0;
+	//s
 	for (i = 0; i < 8 && temp2; i++)
 	{
 		date2[flag] *= 10;
