@@ -38,6 +38,7 @@ struct node * merge2LinkedLists_1(struct node *head1, struct node *head2) {
 		return NULL;
 	if (head1 == NULL && head2 != NULL)
 		return head2;
+	//k
 	if (head1 != NULL && head2 == NULL)
 		return head1;
 	if (head1->data < head2->data)
